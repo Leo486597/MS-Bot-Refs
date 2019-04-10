@@ -24,7 +24,8 @@ namespace demo5luismiddleware.Bots
             if (turnContext.Activity.Type == ActivityTypes.Message)
             {
                 var result = await LuisRecognizer.RecognizeAsync(turnContext, cancellationToken);
-                // get best confidence Intent 
+                
+                // get best confidence Intent from luis
                 var topIntent = result?.GetTopScoringIntent();
                 switch ((topIntent != null) ? topIntent.Value.intent : null)
                 {
