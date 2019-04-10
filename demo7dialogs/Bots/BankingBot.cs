@@ -41,6 +41,10 @@ namespace demo7dialogs.Bots
                 // initialize state if necessary
                 var state = await BotAccessors.BankingBotStateStateAccessor.GetAsync(turnContext, () => new BankingBotState(), cancellationToken);
 
+                // Q: why here add bot accessors
+                // TurnState: TurnContextStateCollection; 
+                // TurnState, Collection of values cached with the context object for the lifetime of the turn.
+                // TurnContextStateCollection.Add, Adds a value to the turn's context.
                 turnContext.TurnState.Add("BotAccessors", BotAccessors);
 
                 var dialogCtx = await dialogs.CreateContextAsync(turnContext, cancellationToken);
@@ -54,6 +58,7 @@ namespace demo7dialogs.Bots
                     await dialogCtx.ContinueDialogAsync(cancellationToken);
                 }
 
+                // message activity, persit turnCtx
                 await BotAccessors.ConversationState.SaveChangesAsync(turnContext, false, cancellationToken);
             }
         }

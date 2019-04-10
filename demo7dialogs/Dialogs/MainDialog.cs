@@ -26,6 +26,7 @@ namespace demo7dialogs.Dialogs
 
                 if (response == "Check balance")
                 {
+                    // BeginDialogAsync, Pushes a new dialog onto the dialog stack.
                     return await stepContext.BeginDialogAsync(CheckBalanceDialog.Id);
                 }
 
@@ -34,9 +35,13 @@ namespace demo7dialogs.Dialogs
                     return await stepContext.BeginDialogAsync(MakePaymentDialog.Id);
                 }
 
+                // NextAsync(), Used to skip to the next waterfall step.
+                // if nothing expected, skip this step
                 return await stepContext.NextAsync();
             });
 
+            // ReplaceDialogAsync, Ends the active dialog and starts a new dialog in its place.
+            // Finally back to mainDialog
             AddStep(async (stepContext, cancellationToken) => { return await stepContext.ReplaceDialogAsync(Id); });
         }
 

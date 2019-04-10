@@ -19,6 +19,7 @@ namespace demo7dialogs.Dialogs.Payment
 
             AddStep(async (stepContext, cancellationToken) =>
             {
+                // get accessors obj from turnCtx and cast
                 var state = await (stepContext.Context.TurnState["BotAccessors"] as BotAccessors).BankingBotStateStateAccessor.GetAsync(stepContext.Context);
                 state.Recipient = stepContext.Result.ToString();
 
