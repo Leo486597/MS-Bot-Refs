@@ -30,6 +30,7 @@ public class Startup
         var configuration = builder.Build();
         services.AddSingleton(configuration);
 
+        // register luis in service provider as singleton when applicaiton build
         services.AddSingleton(sp =>
         {
             // get these values from luis.ai
@@ -45,6 +46,18 @@ public class Startup
                 IncludeAllIntents = true,
             };
 
+        // return LuisRecognizer
+        // Runs an utterance through a recognizer and returns a generic recognizer result.
+        
+        // Q: what does the aciton do?
+        // utterance 
+        // intent (categories), turn on/off
+        // action
+        // entity, associate with the intent, bathroom/washroom/bedroom
+
+        // train luis using utterance by label it -> 
+        // publish trained applicaiton as web service through url via http
+        // return {query:"turn off the kitchen light", "topScoringIntent":{"intent":"turn off light", "score": 1.0, "actions":[{parameters:["type":"Room", "value":[{entity:"kitchen", type:"Room"}]]}]}}
             return new LuisRecognizer(
                 application: luisApp,
                 predictionOptions: luisPredictionOptions,
