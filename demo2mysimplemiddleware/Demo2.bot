@@ -1,0 +1,18 @@
+{
+    "name": "demo2",
+    "description": "",
+    "services": [
+        {
+            "type": "endpoint",
+            "appId": "",
+            "appPassword": "",
+            "endpoint": "http://localhost:50003/api/messages/",
+            "id": "7504d5d0-5a77-11e9-b4f0-97a0c2ff81ea",
+            "name": "http://localhost:50003/api/messages/"
+        }
+    ],
+    "padlock": "",
+    "version": "2.0",
+    "path": "C:\\Users\\RamcoIlab\\Documents\\Leo-Practice\\bot-framework-v4-intro-dotnet-core-master\\demo2mysimplemiddleware\\Demo2.bot",
+    "overrides": null
+}
