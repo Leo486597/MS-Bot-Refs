@@ -41,6 +41,8 @@ namespace demo9proactive.Controllers
             {
                 var resumeJson = System.IO.File.ReadAllText(filepath);
                 var resumeData = JsonConvert.DeserializeObject<ConversationReference>(resumeJson);
+                
+                // connect to bot through connector using ServiceUrl in conversationState
                 var client = new ConnectorClient(new Uri(resumeData.ServiceUrl));
                 var message1 =resumeData.GetContinuationActivity().CreateReply($"This is a response to your enquiry reference {String.Format("{0:X}", resumeData.ActivityId.GetHashCode())}...");
                 var message2 = resumeData.GetContinuationActivity().CreateReply($"{message.Text}");

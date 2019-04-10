@@ -51,6 +51,7 @@ namespace demo7dialogs.Bots
 
                 if (dialogCtx.ActiveDialog == null)
                 {
+                    // first load !turnContext.Responded = true
                     await dialogCtx.BeginDialogAsync(MainDialog.Id, cancellationToken);
                 }
                 else

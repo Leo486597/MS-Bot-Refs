@@ -20,12 +20,15 @@ namespace demo9proactive.Bots
 
         public async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken = default(CancellationToken))
         {
+            // turnContext.Responded will be false: 1) user just opened bot; 2) qna don't know how to answer
             // turnContext.Responded will be false if qna doesn't know how to answer. An example is 'how do I install office 365'.
             if (!turnContext.Responded && turnContext.Activity.Type == ActivityTypes.Message)
             {
                 var conversationReference = turnContext.Activity.GetConversationReference();
 
                 var filepath = Path.Combine(hostingEnvironment.WebRootPath, "resume.json");
+
+                // persist the conversationState 
                 File.WriteAllText(filepath, JsonConvert.SerializeObject(conversationReference));
                 
                 await turnContext.SendActivityAsync($"Sorry, I don't know how to answer that automatically, we will get an answer to you ASAP and get back to you. Your reference number is {String.Format("{0:X}", conversationReference.ActivityId.GetHashCode())}");
